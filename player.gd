@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal lose
+
 # Speed of the player.
 @export var speed = 14
 # Ground acceleration.
@@ -51,4 +53,7 @@ func handle_collissions():
 			if Vector3.UP.dot(collision.get_normal())>0.1:
 				enemy.catch()
 				target_velocity.y = bounce_impulse
+			else:
+				lose.emit() # die
 			break # prevent further duplicate calls?
+
