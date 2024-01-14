@@ -4,6 +4,10 @@ extends CharacterBody3D
 @export var speed = 14
 # Ground acceleration.
 @export var fall_acceleration = 75
+# Vertial jump impuls in meters per second.
+@export var jump_impulse = 20
+# how mush does it bounce after sqaushing a mob.
+@export var bounce_impulse = 16
 
 var target_velocity = Vector3.ZERO
 
@@ -18,6 +22,8 @@ func _physics_process(delta):
 		direction.z += 1
 	if Input.is_action_pressed("move_forward"):
 		direction.z -= 1
+	if Input.is_action_just_pressed("jump"):
+		target_velocity.y = jump_impulse
 	
 	# making the direction constant
 	if direction != Vector3.ZERO:
@@ -42,5 +48,7 @@ func handle_collissions():
 			continue
 		if collision.get_collider().is_in_group("mob"):
 			var enemy = collision.get_collider()
-			enemy.catch()
+			if Vector3.UP.dot(collision.get_normal())>0.1:
+				enemy.catch()
+				target_velocity.y = bounce_impulse
 			break # prevent further duplicate calls?
