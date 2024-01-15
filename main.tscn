@@ -34,6 +34,7 @@ surface_material_override/0 = ExtResource("1_omjai")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 21, 0)
+shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_27csp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4603, 0)
@@ -63,7 +64,7 @@ offset_right = 197.0
 offset_bottom = 83.0
 theme = SubResource("Theme_er5yb")
 
-[node name="ScoreLabel" type="Label" parent="UserInterface" node_paths=PackedStringArray("winScreen")]
+[node name="ScoreLabel" type="Label" parent="UserInterface" node_paths=PackedStringArray("winScreen", "loseScreen")]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 24.0
@@ -73,6 +74,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 0"
 script = ExtResource("4_thmlt")
 winScreen = NodePath("../WinScreen")
+loseScreen = NodePath("../LoseScreen")
 
 [node name="WinScreen" type="AcceptDialog" parent="UserInterface"]
 title = "Congrats You Win!!"
@@ -81,6 +83,11 @@ size = Vector2i(295, 100)
 ok_button_text = "Restart"
 
 [node name="LoseScreen" type="ConfirmationDialog" parent="UserInterface"]
+title = "Better luck next time!"
+initial_position = 1
+size = Vector2i(320, 100)
+ok_button_text = "Reset"
+cancel_button_text = "Exit"
 
 [node name="Walls" type="StaticBody3D" parent="."]
 
