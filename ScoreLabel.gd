@@ -1,10 +1,12 @@
 extends Label
 
+signal win
+
 @export var winScreen : AcceptDialog
 @export var loseScreen: ConfirmationDialog
 
 var score = 0
-@export var MAX_SCORE = 4
+@export var MAX_SCORE = 7
 
 func _on_mob_caught():
 	score += 1
@@ -12,6 +14,7 @@ func _on_mob_caught():
 	
 	if score == MAX_SCORE:
 		winScreen.visible = true
+		win.emit()
 
 func _on_player_lose():
 	if loseScreen != null:

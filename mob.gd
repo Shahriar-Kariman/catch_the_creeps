@@ -4,6 +4,7 @@ extends CharacterBody3D
 
 # Emmit when the player jumped on the mob.
 signal caught
+var active = true
 
 var target_velocity = Vector3.ZERO
 
@@ -12,10 +13,10 @@ func _ready():
 	$Timer.start()
 
 func _physics_process(_delta):
-	#transform = transform.rotated_local(up_direction, rotation_speed*delta)
-	$Pivot.look_at(position + target_velocity, Vector3.UP)
-	velocity = target_velocity
-	move_and_slide()
+	if active:
+		$Pivot.look_at(position + target_velocity, Vector3.UP)
+		velocity = target_velocity
+		move_and_slide()
 
 func catch():
 	caught.emit() # sends a signal that an enemy has been caught.
@@ -27,6 +28,8 @@ func calc_velocity():
 	target_velocity.x = x * speed
 	target_velocity.z = z * speed
 
-
 func _on_timer_timeout():
 	calc_velocity()
+
+func _on_score_label_win():
+	active = false
