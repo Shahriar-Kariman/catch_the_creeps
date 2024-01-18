@@ -144,13 +144,15 @@ shape = SubResource("BoxShape3D_2cgs0")
 wait_time = 7.0
 autostart = true
 
+[connection signal="lose" from="Player" to="." method="_on_player_lose"]
 [connection signal="lose" from="Player" to="UserInterface/ScoreLabel" method="_on_player_lose"]
+[connection signal="lose" from="Player" to="UserInterface/Panel" method="_on_player_lose"]
 [connection signal="caught" from="Mob" to="UserInterface/ScoreLabel" method="_on_mob_caught"]
 [connection signal="caught" from="Mob2" to="UserInterface/ScoreLabel" method="_on_mob_caught"]
 [connection signal="caught" from="Mob3" to="UserInterface/ScoreLabel" method="_on_mob_caught"]
 [connection signal="caught" from="Mob4" to="UserInterface/ScoreLabel" method="_on_mob_caught"]
+[connection signal="win" from="UserInterface/ScoreLabel" to="." method="_on_score_label_win"]
 [connection signal="win" from="UserInterface/ScoreLabel" to="Player" method="_on_score_label_win"]
-[connection signal="win" from="UserInterface/ScoreLabel" to="Mob" method="_on_score_label_win"]
 [connection signal="win" from="UserInterface/ScoreLabel" to="UserInterface/Panel" method="_on_score_label_win"]
 [connection signal="confirmed" from="UserInterface/WinScreen" to="UserInterface/ScoreLabel" method="_on_win_screen_confirmed"]
 [connection signal="confirmed" from="UserInterface/LoseScreen" to="UserInterface/ScoreLabel" method="_on_lose_screen_confirmed"]

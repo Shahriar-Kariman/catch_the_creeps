@@ -11,6 +11,8 @@ var target_velocity = Vector3.ZERO
 func _ready():
 	calc_velocity()
 	$Timer.start()
+	$"../Player".lose.connect(_on_player_lose)
+	$"../UserInterface/ScoreLabel".win.connect(_on_score_label_win)
 
 func _physics_process(_delta):
 	if active:
@@ -32,4 +34,7 @@ func _on_timer_timeout():
 	calc_velocity()
 
 func _on_score_label_win():
+	active = false
+
+func _on_player_lose():
 	active = false

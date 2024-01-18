@@ -8,7 +8,7 @@ var minutes: int = 0
 var seconds: int = 0
 var msec: int = 0
 
-var challengetime = 27
+var challengetime = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,4 +30,7 @@ func _process(delta):
 		active = false
 
 func _on_score_label_win():
+	active = false
+
+func _on_player_lose():
 	active = false

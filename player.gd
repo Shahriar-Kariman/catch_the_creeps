@@ -68,6 +68,5 @@ func die():
 func _on_panel_end():
 	die()
 
-
 func _on_score_label_win():
 	active = false
