@@ -25,3 +25,6 @@ func _on_win_screen_confirmed():
 
 func _on_lose_screen_confirmed():
 	get_tree().reload_current_scene()
+
+func _on_lose_screen_canceled():
+	get_tree().change_scene_to_file("res://main_menu.tscn")

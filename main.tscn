@@ -66,10 +66,15 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 197.0
 offset_bottom = 83.0
+size_flags_horizontal = 8
 theme = SubResource("Theme_er5yb")
 
 [node name="ScoreLabel" type="Label" parent="UserInterface" node_paths=PackedStringArray("winScreen", "loseScreen")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.071066
+anchor_top = -0.060241
+anchor_bottom = -0.060241
 offset_left = 29.0
 offset_top = 17.0
 offset_right = 162.0
@@ -79,6 +84,7 @@ text = "Score: 0"
 script = ExtResource("4_thmlt")
 winScreen = NodePath("../WinScreen")
 loseScreen = NodePath("../LoseScreen")
+metadata/_edit_use_anchors_ = true
 
 [node name="WinScreen" type="AcceptDialog" parent="UserInterface"]
 title = "Congrats You Win!!"
@@ -91,14 +97,14 @@ title = "Better luck next time!"
 initial_position = 1
 size = Vector2i(320, 100)
 ok_button_text = "Reset"
-cancel_button_text = "Exit"
+cancel_button_text = "Return"
 
 [node name="Panel" type="Panel" parent="UserInterface"]
 layout_mode = 0
-offset_left = 546.0
-offset_top = 20.0
-offset_right = 697.0
-offset_bottom = 48.0
+offset_left = 11.0
+offset_top = 53.0
+offset_right = 162.0
+offset_bottom = 81.0
 script = ExtResource("7_3g0r5")
 
 [node name="minutes" type="Label" parent="UserInterface/Panel"]
@@ -155,6 +161,7 @@ autostart = true
 [connection signal="win" from="UserInterface/ScoreLabel" to="Player" method="_on_score_label_win"]
 [connection signal="win" from="UserInterface/ScoreLabel" to="UserInterface/Panel" method="_on_score_label_win"]
 [connection signal="confirmed" from="UserInterface/WinScreen" to="UserInterface/ScoreLabel" method="_on_win_screen_confirmed"]
+[connection signal="canceled" from="UserInterface/LoseScreen" to="UserInterface/ScoreLabel" method="_on_lose_screen_canceled"]
 [connection signal="confirmed" from="UserInterface/LoseScreen" to="UserInterface/ScoreLabel" method="_on_lose_screen_confirmed"]
 [connection signal="end" from="UserInterface/Panel" to="Player" method="_on_panel_end"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
